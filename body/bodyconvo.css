@@ -1,0 +1,329 @@
+/*
+
+
+@keyframes updown {
+	from{transform:translateY(4px);}
+	to{transform:translateY(-4px);}
+	
+} */
+
+
+
+/*NO CHANGES HERE !!!*/html {
+	cursor: url("media/cursos.png"), auto;
+	height:100%;
+	
+}
+
+@font-face {
+  font-family: "MYFONT";
+  src: url('TYPE/AUTHENTICSans-60med.woff') format('woff');
+
+}
+
+@font-face {
+  font-family: "ESTRO";
+  src: url('TYPE/EstroDOT-Reg.woff') format('woff');
+
+}
+
+a {
+	color: inherit; 
+	text-decoration:none;
+}
+
+body {
+   
+    height: 100%;
+	width:100%;
+    border: 0;
+    margin: 0;
+    padding: 0;
+	font-family:"MYFONT", sans-serif; 
+	
+	}
+
+/*STOOOOP*/
+	
+	
+	
+    /*HEADER */
+   .header {
+   		height:50px;
+   		background:white;
+   		width:100%;
+   		top:0;
+   		/*right:0;*/
+   		border-bottom:1px solid red;
+   		position:fixed;
+   		display:flex;
+   		flex-direction:row;
+   		align-items:center;
+   		justify-content:space-between;
+   		z-index:10;
+   		overflow:hidden;
+   	}
+
+	
+   .header button {
+   		margin-left:25px;
+   		margin-right:25px;
+   		font-size:20px;
+   		height:auto;
+   		color:red;
+   		background: none;
+   		border:none;
+   		font-family:"MYFONT", sans-serif; 
+		
+   	}
+	
+
+	
+   	.logo {
+      		display:none;
+			opacity:0;
+			z-index:-2;
+   	}
+	
+
+/*BOOKSPREADS*/
+	
+	.marquee3k {
+		color:white;
+		background-color:transparent;
+		height:100px;
+		width:100%;
+		font-size:50px;
+		font-family:"ESTRO";	
+		margin:-50px 0 0 0;
+		padding:0;
+		top:0px;
+		overflow:hidden;
+		border-left:1px solid red;
+		align-self:flex-start;
+		
+	}
+	
+	.lower {
+		align-self:flex-end;
+		
+	}
+	
+
+#workshopPages {
+	color:red;
+	background-color:red;
+}	
+	
+	
+#leftcontain {
+    height: 40%;
+    width: 100%;
+    background-color: white;
+    bottom: 0;
+}
+
+#rightcontain {
+	background-color:red;
+}
+
+
+.left-page {
+    background-color: white;
+    width: 100%;
+    border-bottom: 1px solid red;
+}
+
+.left-page:last-of-type {
+	border-bottom:0px;
+	
+}
+
+.left-page:first-of-type {
+    margin-top: 90%; 
+	
+}
+
+
+
+.left-page .convo {
+	padding:40px;
+	top:0;
+	font-size:4.5vw;
+	line-height:1.5;
+	margin-bottom:-10px;
+	
+
+}
+
+.convo p {
+	padding:0;
+	margin:0;
+}
+
+
+
+
+.right-page {
+    margin: 0;
+    right: 0;
+    width: 100%;
+    height: 46%;
+    top: 50px;
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    position: fixed;
+    text-align: center;
+	padding-bottom:10px;
+}
+
+.transparent {
+	background-color:transparent;
+}
+
+
+svg {
+	position:absolute;
+} 
+
+.right-page img {
+	/*margin: 10px 0px;*/
+	width: 200px;
+	object-fit: contain;
+}
+
+.revealer {
+	display:none;
+	position:absolute;
+	z-index:5;
+}
+
+
+
+/*SCROLL-BAR*/
+body::-webkit-scrollbar {
+  -webkit-appearance: none;
+  width: 0px;
+}
+
+
+
+iframe {
+	padding:10px;
+}
+
+.sound {
+	font-size:3vw;
+	cursor:pointer;
+}
+
+.sonud:hover {
+	transform:scale(2);
+}
+
+#outropic {
+    width: 300px;
+    animation: updown 1s linear alternate infinite;
+	margin:0;
+}
+
+video {
+	height:50%;
+	width:auto;
+}
+
+
+@media only screen and (min-width: 800px) {
+	
+	.header {height:80px;}
+	
+	.header button {
+			font-size:30px;
+			cursor: url("media/cursos.png"), auto;
+		
+		}
+	
+		header button:hover{
+			text-decoration:underline;
+		}
+	
+	
+		.logo {
+	   		display:inline-block;
+	   		height:70px;
+			position:absolute;
+			left:0;
+			right:0;
+			margin:auto;
+	   		padding:0;
+	   		fill:red;
+			
+		  
+					opacity:1;
+					z-index:10;
+		   	
+		}	
+
+
+
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 1000px) {
+	
+	#leftcontain {
+		margin-top:80px;
+		width:50%;
+	}
+
+
+
+	.left-page {
+		height:auto;
+		border-right:1px solid red;
+	}
+
+
+
+	.left-page:first-of-type {
+		margin-top:0px;
+		
+	}
+
+
+
+	.left-page .convo {font-size:30px;}
+	
+
+
+
+	.right-page {
+
+		width:50%;
+		height:89%;
+		top:80px;
+		display:flex;
+
+	}
+	
+	.right-page img {
+		margin:10px;
+		width:500px;
+	}
+	
+	#outropic {
+		width:100%;
+		animation:updown 1s linear alternate infinite;
+	}
+	
+	video {
+		height:auto;
+		width:auto;
+	}
+	
+	
+}
+
+
