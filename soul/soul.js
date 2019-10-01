@@ -1,20 +1,4 @@
 
-$(document).mousedown(function(){
-	$("p.erase").fadeOut();
-});
-
-$("#bg").eraser({size:500});
-
-
-
-
-
-$("#bg").mouseup(function(){
-$(".clipThru").fadeOut("slow");
-});
-
-
-
 
 
 
