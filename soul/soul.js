@@ -1,13 +1,3 @@
-
-
-
-
-//$(".").click(function(){
-//	
-//	$(this).fadeOut("slow");
-//	//$(".bgimg").removeClass("stretch")	
-//})
-
 var i = 0;
 
 $(".titletext").click(function(){
