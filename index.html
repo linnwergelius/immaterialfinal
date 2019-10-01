@@ -1,0 +1,575 @@
+<head>
+	<meta charset=utf-8>
+	
+	<meta content="width=device-width, initial-scale=1" name="viewport" />
+	<link rel="stylesheet" href="video.css">
+
+	<title>
+		WELCOME TO IMMATERIAL.GIRLS
+	</title>
+
+<style>
+	
+	@font-face {
+		src:url("AUTHENTICSans-60.woff");
+		font-family:'AUTHENTIC';
+	}
+	@keyframes blink {
+		from{opacity:0;}
+		to {opacity:1;}
+	}
+	
+	@keyframes rotateAnim {
+		from {transform:rotate(0deg);}
+		to {transform:rotate(360deg);}
+	} 
+	
+	
+	.glow {
+		animation:blink infinite alternate 1s linear;position:absolute; 
+	}
+	
+	body {
+		 margin: 0; background-color:white; color:black; background-image:;
+	 }
+	p {
+		text-align:center; width:100%; font-family:AUTHENTIC;
+	}
+	p.intro{
+		width:90%; top:5%;text-align:center; right:0; margin:auto; left:0px;animation:none; font-size:18px; z-index:-1;position:absolute; display:block; background-color:white; padding:10px;
+	}
+	
+	p.bottom{
+		bottom:10px; font-size:20px; text-decoration:underline; cursor:pointer;
+	}
+	
+	div.choices { position:fixed; background-color: #00FF70; width:0%; height: 100%; display:flex; justify-content:center; align-items:center; display:flex; transition:0.5s; opacity:1; z-index:-5; color:white; overflow:hidden;}
+	
+	p#link-circle{
+	    animation: rotateAnim 40s infinite linear;
+	    font-size: 30px;
+		letter-spacing:0px;
+	    transition: 0.2s;
+	    padding: 0;
+		top:10px;
+	   	display:inline-block;
+	    margin-bottom: 100px;
+	 
+	 }
+
+	 .cross {
+	     position: absolute;
+	     top: 0px;
+	     font-size: 50px;
+	     align-self: flex-end;
+	     right: 0px;
+	     left: 45%;
+		 bottom:10px;
+	 }
+	 
+	
+	p#index {position:absolute; top:0; bottom:0; left:0; right:0;width:300px; height:170px; margin:auto; font-size:30px; transition:1s; }
+	
+.cross:hover,a:hover {
+		/*color:#7800FF*/
+		color:#7800FF
+;
+		cursor:pointer;
+;
+	}
+	
+	#index:hover{transform:scale(1.1); cursor:pointer;}
+	
+	canvas {
+		width: 1445px;
+    	height: 916px;
+		z-index:1;
+	}
+	
+	a {
+	  color: white;
+	  text-decoration: none; /* no underline */
+	}
+	
+	@media only screen and (min-width: 800px) {
+		p.bottom, p#index, p#link-circle{
+			font-size:50px;
+		}
+		
+		p.intro{
+			font-size:23px;
+		}
+		
+		p#link-circle {
+			letter-spacing:10px;
+		}
+	
+	}
+	
+
+
+</style>
+
+</head>
+
+
+<body>
+	
+	<div class="start">	
+		<p class="intro">	
+		In an age where machine intelligence is expected to equal that of humans within this lifetime, I want to talk about how we relate to it. I want to 		shine a light on our behavior towards, and our design of this soon to be equal species. 
+		To make things more manageable, the light narrows in on a subgroup. 
+		Since our point of reference is always humans, this group is based on one of our own preconceptions.
+		The prominent binary gender of machines. 
+		<br><br>
+		The immaterial Girls.
+		</p>
+	</div>
+
+	<canvas id="myCanvas"></canvas>
+
+	<p class="glow">Click + zoom to control</p>
+	<p class="bottom glow">ENTER</p>
+	
+	<div class="choices">
+	<p class="cross">✕</p>
+	
+	<p id="link-circle">
+		<a href='#'>The Body</a>--<a href="#">The Mind</a>--<a href="#">The Voice</a> -- <a href="#">The Heart</a >-- <a href="#">The Soul</a> --
+	</p>
+		
+		<!----<p id="link-circle">
+		    <a href="#" class="red">LINK</a> &diams; <b>BOLD</b> &diams; <i>ITALIC</i> &diams; <a href="#" class="green">LINK</a> &diams; <a href="#">LINK</a> &diams; 
+		</p>----->
+	
+	<p id="INDEX">INDEX <br> + <br>COLOPHON</p>
+	
+</div>
+
+
+<!---<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>-->
+
+<script
+  src="https://code.jquery.com/jquery-1.9.1.js"
+  integrity="sha256-e9gNBsAcA0DBuRWbm0oZfbiCyhjLrI6bmqAl5o+ZjUA="
+  crossorigin="anonymous"></script>
+
+
+<script src="lettering.js"></script>	
+<script src="three.js"></script>
+<script src="GLTFLoader.js"></script>
+<script src="Material.js"></script>
+<script src="OrbitControls.js"></script>
+
+<script src="showhide.js"></script>
+
+<script>
+$(document).ready(function(){
+    $('#link-circle').circleType();
+});
+
+	/*
+	 * CircleType 0.36
+	 * Peter Hrynkow
+	 * Copyright 2014, Licensed GPL & MI
+	 * Modified by http://stackoverflow.com/users/1913729/blex
+	*/
+
+	$.fn.circleType = function(options) {
+
+	    var self = this,
+	        settings = {
+	        dir: 1,
+	        position: 'relative',
+	    };
+	    if (typeof($.fn.lettering) !== 'function') {
+	        console.log('Lettering.js is required');
+	        return;
+	    }
+	    return this.each(function () {
+    
+	        if (options) { 
+	            $.extend(settings, options);
+	        }
+	        var elem = this, 
+	            delta = (180 / Math.PI),
+	            fs = parseInt($(elem).css('font-size'), 10),
+	            ch = parseInt($(elem).css('line-height'), 10) || fs,
+	            letters, 
+	            center;
+
+	        // trim spaces at the beginning and at the end
+	        elem.innerHTML = elem.innerHTML.replace(/^\s+|\s+$/g, '');
+
+	        // grab the HTML string
+	        var temp = elem.innerHTML;
+        
+	        // replace any space that is not part of a tag with a non-breakable space (&nbsp;)
+	        elem.innerHTML = elem.innerHTML.replace(/<[^<>]+>|\s/g, function(s) { return s[0] == '<' ? s : '&nbsp;'; })
+
+	        // wrap each character in a span
+	        $(elem).lettering();
+
+        
+	        var inTag = false, // are we between tags? (<i>here</i>)
+	            isTag = false, // are we inside a tag? (<here></here>)
+	            tagNum = -1,   // how many opening tags have we met so far?
+	            pos = 0,       // character position (excluding tags)
+	            dom = document.createElement('div'); // temporary dom
+
+	        dom.innerHTML = temp; // clone our element in the temporary dom
+
+	        var tags = dom.children; // children of the element
+	        // for each of them, empty it
+	        for(var i=0, l=tags.length; i<l; i++){
+	            tags[i].innerHTML = '';
+	        }
+
+	        // for each character in our HTML string
+	        for(var i=0, l= temp.length; i<l; i++){
+	            var c = temp[i];
+	            // if it's a '<'
+	            if(c == '<'){
+	                // and if it's an opening tag
+	                if(!inTag){
+	                    // increment the number of tags met
+	                    tagNum++;
+	                    // we're in a tag!
+	                    inTag = true;
+	                }
+	                else{
+	                    // otherwise we're in a closing tag
+	                    inTag = false;
+	                }
+	                // we're on a tag (<here>)
+	                isTag = true;
+	            }
+	            // if it's a '>'
+	            else if(c == '>'){
+	                // we're not <here> anymore
+	                isTag = false;
+	            }
+	            // if we're not <here>
+	            else if(!isTag){
+	                // if we're <b>here</b>
+	                if(inTag){
+	                    // grab the letter in the span # pos
+	                    var cha = elem.children[pos].innerHTML;
+	                    // replace the span's content with our tag
+	                    elem.children[pos].innerHTML = tags[tagNum].outerHTML;
+	                    // put the letter back in
+	                    elem.children[pos].children[0].innerHTML = cha;
+	                }
+	                // move forward in the spans
+	                pos++;
+	            }
+	        }
+
+
+	        elem.style.position =  settings.position;
+
+	        letters = elem.getElementsByTagName('span');
+	        center = Math.floor(letters.length / 2)
+                
+	        var layout = function () {
+	            var tw = 0, 
+	                i,
+	                offset = 0,
+	                minRadius, 
+	                origin, 
+	                innerRadius,
+	                l, style, r, transform;
+                                                
+	            for (i = 0; i < letters.length; i++) {
+	                tw += letters[i].offsetWidth;
+	            }
+	            minRadius = (tw / Math.PI) / 2 + ch;
+            
+	            if (settings.fluid && !settings.fitText) {
+	                settings.radius = Math.max(elem.offsetWidth / 2, minRadius);
+	            }    
+	            else if (!settings.radius) {
+	                settings.radius = minRadius;
+	            }   
+            
+	            if (settings.dir === -1) {
+	                origin = 'center ' + (-settings.radius + ch) / fs + 'em';
+	            } else {
+	                origin = 'center ' + settings.radius / fs + 'em';
+	            }
+
+	            innerRadius = settings.radius - ch;
+                
+	            for (i = 0; i < letters.length; i++) {
+	                l = letters[i];
+	                offset += l.offsetWidth / 2 / innerRadius * delta;
+	                l.rot = offset;                      
+	                offset += l.offsetWidth / 2 / innerRadius * delta;
+	            }   
+	            for (i = 0; i < letters.length; i++) {
+	                l = letters[i]
+	                style = l.style
+	                r = (-offset * settings.dir / 2) + l.rot * settings.dir            
+	                transform = 'rotate(' + r + 'deg)';
+                    
+	                style.position = 'absolute';
+	                style.left = '50%';
+	                style.marginLeft = -(l.offsetWidth / 2) / fs + 'em';
+
+	                style.webkitTransform = transform;
+	                style.MozTransform = transform;
+	                style.OTransform = transform;
+	                style.msTransform = transform;
+	                style.transform = transform;
+
+	                style.webkitTransformOrigin = origin;
+	                style.MozTransformOrigin = origin;
+	                style.OTransformOrigin = origin;
+	                style.msTransformOrigin = origin;
+	                style.transformOrigin = origin;
+	                if(settings.dir === -1) {
+	                    style.bottom = 0;
+	                }
+	            }
+            
+	            if (settings.fitText) {
+	                if (typeof($.fn.fitText) !== 'function') {
+	                    console.log('FitText.js is required when using the fitText option');
+	                } else {
+	                    $(elem).fitText();
+	                    $(window).resize(function () {
+	                        updateHeight();
+	                    });
+	                }
+	            }    
+	            updateHeight();
+            
+	            if (typeof settings.callback === 'function') {
+	                // Execute our callback with the element we transformed as `this`
+	                settings.callback.apply(elem);
+	            }
+	        };
+        
+	        var getBounds = function (elem) {
+	            var docElem = document.documentElement,
+	                box = elem.getBoundingClientRect();
+	            return {
+	                top: box.top + window.pageYOffset - docElem.clientTop,
+	                left: box.left + window.pageXOffset - docElem.clientLeft,
+	                height: box.height
+	            };
+	        };       
+        
+	        var updateHeight = function () {
+	            var mid = getBounds(letters[center]),
+	                first = getBounds(letters[0]),
+	                h;
+	            if (mid.top < first.top) {
+	                h = first.top - mid.top + first.height;
+	            } else {
+	                h = mid.top - first.top + first.height;
+	            }
+	            elem.style.height = h + 'px';  
+	        }
+
+	        if (settings.fluid && !settings.fitText) {
+	            $(window).resize(function () {
+	                layout();
+	            });
+	        }    
+
+	        if (document.readyState !== "complete") {
+	            elem.style.visibility = 'hidden';
+	            $(window).load(function () {
+	                elem.style.visibility = 'visible';
+	                layout();
+	            });
+	        } else {
+	            layout();
+	        }
+	    });
+	};
+
+	
+	//var renderer,
+	//	scene,
+	//	camera,
+	//	myCanvas = document.getElementById('myCanvas');
+	//
+	////RENDERER
+	//renderer = new THREE.WebGLRenderer({
+	//  canvas: myCanvas, 
+	//  antialias: true
+	//});
+	//renderer.setClearColor(0x000000);
+	//renderer.setPixelRatio(window.devicePixelRatio);
+	//renderer.setSize(window.innerWidth, window.innerHeight);
+	//
+	////CAMERA
+	//camera = new THREE.PerspectiveCamera(65, window.innerWidth / window.innerHeight, 0.1, 1000 );
+	//
+	////SCENE
+	//scene = new THREE.Scene();
+	//
+	////LIGHTS
+	//var light = new THREE.AmbientLight(0xffffff, 0.5);
+	//scene.add(light);
+	//
+	//var light2 = new THREE.PointLight(0xffffff, 0.5);
+	//scene.add(light2);
+	//
+	////OBJECT
+	//
+	//var loader = new THREE.GLTFLoader();
+	//
+	//loader.load('girls.glb', handle_load);
+	//
+	//var mesh;
+	//
+	//function handle_load(gltf) {
+	//
+	//    console.log(gltf);
+	//    mesh = gltf.scene;
+	//    console.log(mesh.children[0]);
+	//	mesh.material = new THREE.MeshLambertMaterial();
+	//	scene.add(mesh);
+	//    mesh.position.z = -10;
+	//}
+	//
+	//
+	////RENDER LOOP
+	//render();
+	//
+	//var delta = 0;
+	//var prevTime = Date.now();
+	//
+	//function render() {
+	//
+	//    delta += 0.1;
+	//
+	//    if (mesh) {
+	//    
+	//        mesh.rotation.y += 0.01;
+	//
+	//        //animation mesh
+	//        // mesh.morphTargetInfluences[ 0 ] = Math.sin(delta) * 20.0;
+	//    }
+	//
+	//	renderer.render(scene, camera);
+	//
+	//	requestAnimationFrame(render);
+	//}
+	//
+	
+	
+	
+	//ORBIT
+	
+	var myCanvas = document.getElementById('myCanvas');
+	
+	renderer = new THREE.WebGLRenderer({
+	  canvas: myCanvas, 
+	  antialias: true,
+	  alpha: true 
+	});
+	renderer.setClearColor(0x000000, 0);
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
+	
+	var scene = new THREE.Scene();
+	
+	//LIGHTS
+	//var light = new THREE.AmbientLight(0xffffff, 0.5);
+	//scene.add(light);
+	//
+	//var light2 = new THREE.PointLight(0xffffff, 0.5);
+	//scene.add(light2);
+	
+	scene.add( new THREE.AmbientLight( 0xBAC1BD,0.2 ) );
+				var light = new THREE.DirectionalLight( 0x00FF70, 2 );
+				light.position.set( 1, 0.75, 0.7 );
+				scene.add( light );
+				var light = new THREE.DirectionalLight( 0x7800FF, 2 );
+				light.position.set( - 1, 0.75, - 0.7 );
+				scene.add( light );
+	
+	//OBJECT
+	
+	var loader = new THREE.GLTFLoader();
+	
+	loader.load('logo.glb', handle_load);
+	
+	var mesh;
+	
+	function handle_load(gltf) {
+	
+	    console.log(gltf);
+	    mesh = gltf.scene;
+	    console.log(mesh.children[0]);
+		mesh.material = new THREE.MeshLambertMaterial();
+		scene.add(mesh);
+	    mesh.position.z = -10;
+	}
+	
+	//CAMERA
+	
+	var camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 10000 );
+	
+	var controls = new THREE.OrbitControls( camera, myCanvas );
+	
+	//controls.update() must be called after any manual changes to the camera's transform
+	camera.position.set( 0, 20, 100 );
+	controls.update();
+	controls.autoRotate = true;
+	
+	animate();
+	
+	controls.autoRotate = true;
+	
+	controls.enableDamping = true;
+	
+	controls.dampingFactor = 1;
+	
+	function animate() {
+	
+		requestAnimationFrame( animate );
+	
+		// required if controls.enableDamping or controls.autoRotate are set to true
+		controls.update();
+	
+		renderer.render( scene, camera );
+	
+	}
+	
+	//INTRO VID
+
+	$(".play").click(function(){
+		$("video").css("z-index","1000")
+	  $(".playbutton").fadeOut();
+	  if ($(window).width()>800){			  
+		  $("#vid").trigger('play');
+	  } else {
+		  $("#vidMobile").trigger('play');
+	  }
+	})
+
+	$(".skip").click(function(){
+	  $(".next").show();
+	  $("canvas").css("opacity","1");
+	   $('#link-circle').circleType();
+	  $(".introvid").fadeOut();
+	  
+	})
+	$("video").click(function(){
+  	  $(".next").show();
+	  $("canvas").css("opacity","1");
+	  $(".introvid").fadeOut();
+	  
+	})
+
+</script>
+	
+	
+
+
+</body>
