@@ -28,6 +28,11 @@
 	src:url(../AUTHENTICSans-90.woff2);
 }
 
+a {
+	color: blue;
+  	text-decoration: none;
+}
+
 
 html, body{
 	overflow:hidden;
