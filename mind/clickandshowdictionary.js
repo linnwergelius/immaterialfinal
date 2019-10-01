@@ -46,7 +46,7 @@ $("#C").mouseout(function() {
  //Gynoid
   $("#Gy").mouseover(function() {
     $( "#hidden" ).text( "A gynoid, or fembot, is a feminine humanoid robot. Gynoids appear widely in science fiction film and art. As more realistic humanoid robot design becomes technologically possible, they are also emerging in real-life robot design." );
-    $("#hideimg").attr("src","img for d/gynoid.jpg");
+    $("#hideimg").attr("src","img for d/Gynoid.jpg");
   });
 
   $("#Gy").mouseout(function() {
@@ -60,7 +60,7 @@ $("#C").mouseout(function() {
   //Humanoid
   $("#H").mouseover(function() {
   	$( "#hidden" ).text( "A humanoid (from English human and -oid \"resembling\" is something that has an appearance resembling a human without actually being one. The earliest recorded use of the term, in 1870, referred to indigenous peoples in areas colonized by Europeans. By the 20th century, the term came to describe fossils which were morphologically similar, but not identical, to those of the human skeleton." );
-     $("#hideimg").attr("src","img for d/humanoid.jpg");
+     $("#hideimg").attr("src","img for d/Humanoid.jpg");
   });
 
   $("#H").mouseout(function() {
