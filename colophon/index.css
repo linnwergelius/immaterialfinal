@@ -51,7 +51,7 @@ a {
 	transition:0.3s;
 }
 
-.navigation-bar p:hover {
+.navigation-bar a:hover {
 	transform:translate(10px);
 	text-decoration:underline;
 	cursor:pointer;
